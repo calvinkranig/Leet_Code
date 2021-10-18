@@ -24,17 +24,17 @@ class Result {
     public static int nonDivisibleSubset(int k, List<Integer> s) {
     // Write your code here
         if(k==0 || k==1){
-            return 0;
+            return 1;
         }
         int[] remainders = new int[k];
         for(Integer i : s){
             int remainder = i%k;
-            remainders[remainder]+=1;
+            remainders[remainder]++;
         }
         int ret = Math.min(remainders[0],1);
         int l;
         int r;
-        for(l = 1, r = k-1; l<k; l++,r--) {
+        for(l = 1, r = k-1; l<r; l++,r--) {
             ret += Math.max(remainders[l],remainders[r]);
         }
         if(r==l) {
